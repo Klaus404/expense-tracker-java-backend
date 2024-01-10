@@ -17,7 +17,7 @@ public class ExpenseManagerController {
     private  final UserRepository userRepository;
 
 
-    //Show all products from the DB
+    //Show all products from the DBgit
     @GetMapping("/products")
     List<Product> all(Principal user) {
         if (user.getName() != null) {
