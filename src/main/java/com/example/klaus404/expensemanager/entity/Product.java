@@ -1,6 +1,8 @@
 package com.example.klaus404.expensemanager.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +10,7 @@ import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
@@ -17,7 +20,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "products")
 @Data
-public class Product {
+public class Product implements Principal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -43,9 +46,11 @@ public class Product {
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
 
-    @ManyToOne
+    @ManyToOne()
+    @NotNull
     @JoinColumn(name = "user_id")
     private User user;
+
 
     public void setName(String name) {
         this.name = name;

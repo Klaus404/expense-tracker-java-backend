@@ -10,10 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Product findByNameContaining(@RequestParam("name") String name);
+    Product findProductBy(@RequestParam("id") Long id);
 
-    List<Product> findProductByUser_Email(@RequestParam("user_email") String email);
-
-    Product findProductByIdAndUser_Email(String email, @RequestParam("product_id") Long id);
 
 }

@@ -2,15 +2,10 @@ package com.example.klaus404.expensemanager.controller;
 
 
 import com.example.klaus404.expensemanager.ProductNotFoundException;
+import com.example.klaus404.expensemanager.dao.ProductRepository;
 import com.example.klaus404.expensemanager.dao.UserRepository;
 import com.example.klaus404.expensemanager.entity.Product;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequestEntityConverter;
 import org.springframework.web.bind.annotation.*;
-import com.example.klaus404.expensemanager.dao.ProductRepository;
 
 import java.security.Principal;
 import java.util.List;
@@ -18,24 +13,26 @@ import java.util.List;
 
 @RestController
 public class ExpenseManagerController {
-    private ProductRepository repository;
+    private final ProductRepository productRepository;
+    private  final UserRepository userRepository;
 
-
-    ExpenseManagerController(ProductRepository repository){
-        this.repository = repository;
-    }
 
     //Show all products from the DB
     @GetMapping("/products")
-    List<Product> all(Principal user){
-        return repository.findProductByUser_Email(user.getName());
+    List<Product> all(Principal user) {
+        if (user.getName() != null) {
+            //TODO: de refacut
+            return productRepository.findAll();
+        }
+        return null;
     }
+
 
     //Add one product into the DB
     @PostMapping("/products")
     Product newProduct(@RequestBody Product newProduct,
                        Principal user){
-       return repository.save(newProduct);
+        return productRepository.save(newProduct);
     }
 
     //Show the product with one specific id
@@ -43,7 +40,7 @@ public class ExpenseManagerController {
     Product getOne(@PathVariable Long id,
                    Principal user){
         try {
-            return repository.findProductByIdAndUser_Email(user.getName(), id);
+            return  null; // TODO: 1/10/24  ;
         } catch (ProductNotFoundException exc) {
             // Handle the exception if needed, or rethrow it
             throw exc;
@@ -56,17 +53,17 @@ public class ExpenseManagerController {
     @PutMapping("/products/{id}")
     Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id){
 
-        return repository.findById(id)
+        return productRepository.findById(id)
                 .map(product -> {
                     product.setName(newProduct.getName());
                     product.setDescription(newProduct.getDescription());
                     product.setQuantity(newProduct.getQuantity());
                     product.setValue(newProduct.getValue());
-                    return repository.save(product);
+                    return productRepository.save(product);
                 })
                 .orElseGet(() -> {
                     newProduct.setId(id);
-                    return  repository.save(newProduct);
+                    return  productRepository.save(newProduct);
                 });
 
     }
@@ -74,7 +71,11 @@ public class ExpenseManagerController {
     //Delete a product with a specific id
     @DeleteMapping("/products/{id}")
     void deleteProduct(@PathVariable Long id){
-        repository.deleteById(id);
+        productRepository.deleteById(id);
     }
 
+    ExpenseManagerController(ProductRepository productRepository, UserRepository userRepository) {
+        this.productRepository = productRepository;
+        this.userRepository = userRepository;
+    }
 }

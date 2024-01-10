@@ -13,7 +13,6 @@ import java.security.Principal;
 @RestController
 public class HomeController {
 
-
     @GetMapping("/")
     public String home(Principal user){
         return "Welcome! " + user.getName();
