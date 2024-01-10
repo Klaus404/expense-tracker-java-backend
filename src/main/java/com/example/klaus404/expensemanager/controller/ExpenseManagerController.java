@@ -5,6 +5,7 @@ import com.example.klaus404.expensemanager.ProductNotFoundException;
 import com.example.klaus404.expensemanager.dao.ProductRepository;
 import com.example.klaus404.expensemanager.dao.UserRepository;
 import com.example.klaus404.expensemanager.entity.Product;
+import com.example.klaus404.expensemanager.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -16,13 +17,15 @@ public class ExpenseManagerController {
     private final ProductRepository productRepository;
     private  final UserRepository userRepository;
 
+    private final ProductService productService;
+
 
     //Show all products from the DBgit
     @GetMapping("/products")
     List<Product> all(Principal user) {
         if (user.getName() != null) {
             //TODO: de refacut
-            return productRepository.findAll();
+            return productService.getProductsForCurrentUser();
         }
         return null;
     }
@@ -74,8 +77,10 @@ public class ExpenseManagerController {
         productRepository.deleteById(id);
     }
 
-    ExpenseManagerController(ProductRepository productRepository, UserRepository userRepository) {
+    ExpenseManagerController(ProductRepository productRepository, UserRepository userRepository, ProductService productService) {
         this.productRepository = productRepository;
         this.userRepository = userRepository;
+        this.productService = productService;
     }
+
 }

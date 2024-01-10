@@ -36,7 +36,4 @@ public class User implements Principal {
         return this.products;
     }
 
-    @NotNull
-    @Column(name = "principal_id")
-    String principal_id;
 }

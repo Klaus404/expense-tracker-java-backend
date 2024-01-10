@@ -42,4 +42,26 @@ public class ProductService {
             return Collections.emptyList();
         }
     }
+
+    public List<Product> getProductsForCurrentUserByProductId(int id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !authentication.isAuthenticated()) {
+            // Handle unauthenticated case
+            return Collections.emptyList();
+        }
+
+        String currentPrincipalName = authentication.getName();
+
+        // Retrieve user based on the principal name
+        User currentUser = userRepository.findByUsername(currentPrincipalName);
+
+        if (currentUser != null) {
+            // Retrieve products associated with the user
+            return currentUser.getProducts();
+        } else {
+            // Handle the case when the user is not found
+            return Collections.emptyList();
+        }
+    }
 }
