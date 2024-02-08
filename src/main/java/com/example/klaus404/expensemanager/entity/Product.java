@@ -1,26 +1,21 @@
 package com.example.klaus404.expensemanager.entity;
 
+import com.example.klaus404.expensemanager.dto.ProductDto;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Objects;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "products")
-@Data
-public class Product implements Principal {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Product{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -55,4 +50,9 @@ public class Product implements Principal {
     public void setName(String name) {
         this.name = name;
     }
+
+    public ProductDto toDto(){
+       return new ProductDto(this.user, this.name, this.value, this.quantity, this.description);
+    }
+
 }

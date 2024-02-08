@@ -1,7 +1,7 @@
 package com.example.klaus404.expensemanager.controller;
 
 
-import com.example.klaus404.expensemanager.ProductNotFoundException;
+import com.example.klaus404.expensemanager.exception.ProductNotFoundException;
 import com.example.klaus404.expensemanager.dao.ProductRepository;
 import com.example.klaus404.expensemanager.dao.UserRepository;
 import com.example.klaus404.expensemanager.entity.Product;
@@ -14,9 +14,6 @@ import java.util.List;
 
 @RestController
 public class ExpenseManagerController {
-    private final ProductRepository productRepository;
-    private  final UserRepository userRepository;
-
     private final ProductService productService;
 
 
@@ -24,7 +21,6 @@ public class ExpenseManagerController {
     @GetMapping("/products")
     List<Product> all(Principal user) {
         if (user.getName() != null) {
-            //TODO: de refacut
             return productService.getProductsForCurrentUser();
         }
         return null;
@@ -35,7 +31,9 @@ public class ExpenseManagerController {
     @PostMapping("/products")
     Product newProduct(@RequestBody Product newProduct,
                        Principal user){
-        return productRepository.save(newProduct);
+        productService.saveProduct(newProduct);
+
+        return newProduct;
     }
 
     //Show the product with one specific id
@@ -55,7 +53,7 @@ public class ExpenseManagerController {
     //Replace a product with a specific id
     @PutMapping("/products/{id}")
     Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id){
-
+/**
         return productRepository.findById(id)
                 .map(product -> {
                     product.setName(newProduct.getName());
@@ -68,18 +66,17 @@ public class ExpenseManagerController {
                     newProduct.setId(id);
                     return  productRepository.save(newProduct);
                 });
-
+**/
+        return null;
     }
 
     //Delete a product with a specific id
     @DeleteMapping("/products/{id}")
     void deleteProduct(@PathVariable Long id){
-        productRepository.deleteById(id);
+        //productRepository.deleteById(id);
     }
 
     ExpenseManagerController(ProductRepository productRepository, UserRepository userRepository, ProductService productService) {
-        this.productRepository = productRepository;
-        this.userRepository = userRepository;
         this.productService = productService;
     }
 

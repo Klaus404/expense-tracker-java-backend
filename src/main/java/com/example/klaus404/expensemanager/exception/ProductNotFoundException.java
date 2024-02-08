@@ -1,4 +1,4 @@
-package com.example.klaus404.expensemanager;
+package com.example.klaus404.expensemanager.exception;
 
 public class ProductNotFoundException extends RuntimeException{
     public ProductNotFoundException(String email, Long id){
