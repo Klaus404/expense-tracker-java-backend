@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -25,9 +26,12 @@ public class User{
     @OneToMany(mappedBy = "user")
     private List<Product> products;
 
+    @Column(name = "hashcode")
+    private int hashcode;
 
     public List<Product> getProducts(){
-        return this.products;
+        return this.products.stream()
+                .collect(Collectors.toList());
 
     }
 
@@ -35,5 +39,9 @@ public class User{
         return this.username;
     }
 
-
+    public User(String username, List<Product> products, int hashcode) {
+        this.username = username;
+        this.products = products;
+        this.hashcode = hashcode;
+    }
 }

@@ -1,9 +1,9 @@
 package com.example.klaus404.expensemanager.controller;
 
 
-import com.example.klaus404.expensemanager.exception.ProductNotFoundException;
 import com.example.klaus404.expensemanager.dao.ProductRepository;
 import com.example.klaus404.expensemanager.dao.UserRepository;
+import com.example.klaus404.expensemanager.dto.ProductDto;
 import com.example.klaus404.expensemanager.entity.Product;
 import com.example.klaus404.expensemanager.service.ProductService;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class ExpenseManagerController {
 
     //Show all products from the DBgit
     @GetMapping("/products")
-    List<Product> all(Principal user) {
+    List<ProductDto> all(Principal user) {
         if (user.getName() != null) {
             return productService.getProductsForCurrentUser();
         }
@@ -31,21 +31,20 @@ public class ExpenseManagerController {
     @PostMapping("/products")
     Product newProduct(@RequestBody Product newProduct,
                        Principal user){
-        productService.saveProduct(newProduct);
+        productService.saveProduct(newProduct, user);
 
         return newProduct;
     }
 
     //Show the product with one specific id
     @GetMapping("/products/{id}")
-    Product getOne(@PathVariable Long id,
-                   Principal user){
-        try {
-            return  null; // TODO: 1/10/24  ;
-        } catch (ProductNotFoundException exc) {
-            // Handle the exception if needed, or rethrow it
-            throw exc;
-        }
+    List<Object> getById(@PathVariable Long id,
+                                  Principal user){
+            if (user.getName() != null) {
+                return productService.getProductsForCurrentUserByProductId(id);
+            }
+
+            return null;
 
     }
 
@@ -79,5 +78,4 @@ public class ExpenseManagerController {
     ExpenseManagerController(ProductRepository productRepository, UserRepository userRepository, ProductService productService) {
         this.productService = productService;
     }
-
 }
