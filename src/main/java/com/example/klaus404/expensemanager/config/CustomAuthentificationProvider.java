@@ -1,15 +1,14 @@
 package com.example.klaus404.expensemanager.config;
 
-import com.example.klaus404.expensemanager.entity.User;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class CustomAuthentificationProvider implements AuthenticationProvider {
@@ -22,7 +21,7 @@ public class CustomAuthentificationProvider implements AuthenticationProvider {
             return new UsernamePasswordAuthenticationToken(
                     username,
                     password,
-                    Arrays.asList());
+                    List.of(new SimpleGrantedAuthority("ROLE_ADMIN")));
         } else {
             throw new AuthenticationCredentialsNotFoundException("ERROR!");
         }

@@ -13,17 +13,14 @@ import java.util.List;
 
 
 @RestController
-public class ExpenseManagerController {
+public class ProductController {
     private final ProductService productService;
 
 
     //Show all products from the DBgit
     @GetMapping("/products")
     List<ProductDto> all(Principal user) {
-        if (user.getName() != null) {
-            return productService.getProductsForCurrentUser();
-        }
-        return null;
+        return productService.getProductsForCurrentUser();
     }
 
 
@@ -32,7 +29,6 @@ public class ExpenseManagerController {
     Product newProduct(@RequestBody Product newProduct,
                        Principal user){
         productService.saveProduct(newProduct, user);
-
         return newProduct;
     }
 
@@ -75,7 +71,7 @@ public class ExpenseManagerController {
         //productRepository.deleteById(id);
     }
 
-    ExpenseManagerController(ProductRepository productRepository, UserRepository userRepository, ProductService productService) {
+    ProductController(ProductRepository productRepository, UserRepository userRepository, ProductService productService) {
         this.productService = productService;
     }
 }

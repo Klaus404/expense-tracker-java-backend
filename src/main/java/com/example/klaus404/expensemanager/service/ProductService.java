@@ -5,11 +5,12 @@ import com.example.klaus404.expensemanager.dao.UserRepository;
 import com.example.klaus404.expensemanager.dto.ProductDto;
 import com.example.klaus404.expensemanager.entity.Product;
 import com.example.klaus404.expensemanager.entity.User;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,12 +27,12 @@ public class ProductService {
     }
 
 
-    public ProductDto saveProduct(Product product, Principal user) {
+    public ProductDto saveProduct(Product product, Authentication user) {
         //Save the product to the DB
         productRepository.save(product);
 
         //Handle the users int the DB
-        if(!existingUser(user)){
+        if(!existingUser((UsernamePasswordAuthenticationToken) user.getPrincipal())){
             //TODO:: trebuie modificata in baza de date lista de produse
         } else {
             //Save a new user in the DB with his products
@@ -47,7 +48,7 @@ public class ProductService {
     public List<ProductDto> getProductsForCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication == null || !authentication.isAuthenticated() || !existingUser((Principal) authentication.getPrincipal())) {
+        if (authentication == null || !authentication.isAuthenticated() || !existingUser( (UsernamePasswordAuthenticationToken) authentication.getPrincipal())) {
             // Handle unauthenticated case
             return Collections.emptyList();
         }
@@ -97,7 +98,7 @@ public class ProductService {
         }
     }
 
-    private boolean existingUser(Principal p){
+    private boolean existingUser(UsernamePasswordAuthenticationToken p){
         if(userRepository.existsByUsername(p.getName())) return true;
         return false;
     }

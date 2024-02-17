@@ -38,7 +38,7 @@ public class SecurityConfig {
 
         var user = User.withUsername("user")
                 .password("password")
-                .roles("user")
+                .roles("ADMIN")
                 .build();
 
         var userDetailsService = new InMemoryUserDetailsManager(user);
