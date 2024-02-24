@@ -1,7 +1,7 @@
 package com.example.klaus404.expensemanager.dto;
 
 
-import com.example.klaus404.expensemanager.entity.User;
+import com.example.klaus404.expensemanager.model.User;
 
 
 public class ProductDto {

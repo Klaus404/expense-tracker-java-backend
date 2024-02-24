@@ -1,4 +1,4 @@
-package com.example.klaus404.expensemanager.entity;
+package com.example.klaus404.expensemanager.model;
 
 import com.example.klaus404.expensemanager.dto.ProductDto;
 import jakarta.persistence.*;

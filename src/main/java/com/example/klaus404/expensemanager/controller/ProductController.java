@@ -4,11 +4,10 @@ package com.example.klaus404.expensemanager.controller;
 import com.example.klaus404.expensemanager.dao.ProductRepository;
 import com.example.klaus404.expensemanager.dao.UserRepository;
 import com.example.klaus404.expensemanager.dto.ProductDto;
-import com.example.klaus404.expensemanager.entity.Product;
+import com.example.klaus404.expensemanager.model.Product;
 import com.example.klaus404.expensemanager.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 
@@ -17,31 +16,24 @@ public class ProductController {
     private final ProductService productService;
 
 
-    //Show all products from the DBgit
+    //Show all products from the DB
     @GetMapping("/products")
-    List<ProductDto> all(Principal user) {
+    List<ProductDto> all() {
         return productService.getProductsForCurrentUser();
     }
 
 
     //Add one product into the DB
     @PostMapping("/products")
-    Product newProduct(@RequestBody Product newProduct,
-                       Principal user){
-        productService.saveProduct(newProduct, user);
+    Product newProduct(@RequestBody Product newProduct){
+        productService.saveProduct(newProduct);
         return newProduct;
     }
 
     //Show the product with one specific id
     @GetMapping("/products/{id}")
-    List<Object> getById(@PathVariable Long id,
-                                  Principal user){
-            if (user.getName() != null) {
-                return productService.getProductsForCurrentUserByProductId(id);
-            }
-
-            return null;
-
+    List<Object> getById(@PathVariable Long id){
+        return productService.getProductsForCurrentUserByProductId(id);
     }
 
 

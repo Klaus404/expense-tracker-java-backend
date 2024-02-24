@@ -25,11 +25,12 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests(
-                        authorizeHttp -> {
-                            authorizeHttp.requestMatchers("/login").permitAll();
-                            authorizeHttp.requestMatchers("/error").permitAll();
-                            authorizeHttp.requestMatchers("/products").hasRole("ADMIN");
-                            authorizeHttp.anyRequest().authenticated();
+                        authorizeConfig -> {
+                            authorizeConfig.requestMatchers("/login").permitAll();
+                            authorizeConfig.requestMatchers("/error").hasRole("ADMIN");
+                            authorizeConfig.requestMatchers("/users").hasRole("ADMIN");
+                            authorizeConfig.requestMatchers("/products").authenticated();
+                            authorizeConfig.anyRequest().authenticated();
                         }
                 )
                 .authenticationProvider(customAuthentificationProvider)
@@ -39,6 +40,7 @@ public class SecurityConfig {
         var user = User.withUsername("user")
                 .password("password")
                 .roles("ADMIN")
+                .authorities("ROLE_ADMIN")
                 .build();
 
         var userDetailsService = new InMemoryUserDetailsManager(user);

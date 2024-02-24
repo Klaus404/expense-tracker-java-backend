@@ -1,6 +1,6 @@
 package com.example.klaus404.expensemanager.dto;
 
-import com.example.klaus404.expensemanager.entity.Product;
+import com.example.klaus404.expensemanager.model.Product;
 
 import java.util.ArrayList;
 
