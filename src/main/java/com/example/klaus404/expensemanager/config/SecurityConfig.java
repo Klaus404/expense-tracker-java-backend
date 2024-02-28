@@ -1,5 +1,6 @@
 package com.example.klaus404.expensemanager.config;
 
+import com.example.klaus404.expensemanager.security.CustomAuthentificationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
