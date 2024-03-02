@@ -71,8 +71,13 @@ public class User{
 
     public User(String username, int hashcode) {
         this.username = username;
-        this.products = products;
         this.hashcode = hashcode;
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
     public String getEmail() {

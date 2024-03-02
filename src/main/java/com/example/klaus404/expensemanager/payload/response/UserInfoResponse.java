@@ -8,7 +8,7 @@ public class UserInfoResponse {
     private String email;
     private List<String> roles;
 
-    public UserInfoResponse(Long id, String username, String email, List<String> roles) {
+    public UserInfoResponse(Integer id, String username, String email, List<String> roles) {
         this.id = id;
         this.username = username;
         this.email = email;
