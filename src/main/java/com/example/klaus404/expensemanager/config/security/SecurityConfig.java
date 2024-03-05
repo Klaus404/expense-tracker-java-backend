@@ -1,10 +1,10 @@
-package com.example.klaus404.expensemanager.config;
+package com.example.klaus404.expensemanager.config.security;
 
-import com.example.klaus404.expensemanager.security.CustomAuthentificationProvider;
+import com.example.klaus404.expensemanager.config.security.CustomAuthentificationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
-@EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
     private final CustomAuthentificationProvider customAuthentificationProvider;
 

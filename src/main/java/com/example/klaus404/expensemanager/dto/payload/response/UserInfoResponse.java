@@ -1,9 +1,9 @@
-package com.example.klaus404.expensemanager.payload.response;
+package com.example.klaus404.expensemanager.dto.payload.response;
 
 import java.util.List;
 
 public class UserInfoResponse {
-    private Long id;
+    private Integer id;
     private String username;
     private String email;
     private List<String> roles;
@@ -15,11 +15,11 @@ public class UserInfoResponse {
         this.roles = roles;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,4 +1,4 @@
-package com.example.klaus404.expensemanager.security.jwt;
+package com.example.klaus404.expensemanager.config.security.jwt;
 
 import com.example.klaus404.expensemanager.model.UserDetailsImpl;
 import io.jsonwebtoken.*;

@@ -1,4 +1,4 @@
-package com.example.klaus404.expensemanager.security;
+package com.example.klaus404.expensemanager.config.security;
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;

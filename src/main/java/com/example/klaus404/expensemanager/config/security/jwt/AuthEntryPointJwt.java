@@ -1,4 +1,4 @@
-package com.example.klaus404.expensemanager.security.jwt;
+package com.example.klaus404.expensemanager.config.security.jwt;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

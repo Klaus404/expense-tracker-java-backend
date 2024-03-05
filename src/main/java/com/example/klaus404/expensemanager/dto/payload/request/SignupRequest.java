@@ -1,4 +1,4 @@
-package com.example.klaus404.expensemanager.payload.request;
+package com.example.klaus404.expensemanager.dto.payload.request;
 
 
 import jakarta.validation.constraints.Email;

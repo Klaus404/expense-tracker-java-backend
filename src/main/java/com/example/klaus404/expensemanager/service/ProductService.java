@@ -45,5 +45,7 @@ public class ProductService {
     }
 
 
-
+    public List<Object> getProductsForCurrentUserByProductId(Long id) {
+        return null;
+    }
 }
