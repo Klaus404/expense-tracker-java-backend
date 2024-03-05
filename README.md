@@ -1,6 +1,6 @@
 **Expense Tracker Java Backend**
 
-This repository contains the backend code for an expense tracker application implemented in Java. The backend is built using the Spring Boot framework and provides functionalities for managing expenses, user authentication, and data storage.
+This repository contains the backend code for an expense tracker application implemented in Java. The backend is built using the Spring Boot framework and provides functionalities for managing day to day expenses, user authentication, and data storage.
 
 **Key Features:**
 
