@@ -72,9 +72,9 @@ public class SecurityConfig  {
                             authorizeConfig.requestMatchers("/auth/signin").permitAll();
                             authorizeConfig.requestMatchers("/auth/signup").permitAll();
                             authorizeConfig.requestMatchers("/auth/signout").permitAll();
-                            authorizeConfig.requestMatchers("/error").hasRole("ROLE_ADMIN");
-                            authorizeConfig.requestMatchers("/users").hasRole("ROLE_ADMIN");
-                            authorizeConfig.requestMatchers("products/*").hasRole("ROLE_USER");
+                            authorizeConfig.requestMatchers("/error").hasAuthority("ROLE_ADMIN");
+                            authorizeConfig.requestMatchers("/users").hasAuthority("ROLE_ADMIN");
+                            authorizeConfig.requestMatchers("products/*").hasAuthority("ROLE_USER");
                             authorizeConfig.requestMatchers("/products").authenticated();
                             authorizeConfig.anyRequest().authenticated();
                         }

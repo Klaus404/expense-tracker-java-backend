@@ -26,6 +26,21 @@ public class ProductService {
         return product.toDto();
     }
 
+    public Product putProduct(Product newProduct, Long id){
+        return productRepository.findById(id)
+                .map(product -> {
+                    product.setName(newProduct.getName());
+                    product.setDescription(newProduct.getDescription());
+                    product.setQuantity(newProduct.getQuantity());
+                    product.setValue(newProduct.getValue());
+                    return productRepository.save(product);
+                })
+                .orElseGet(() -> {
+                    newProduct.setId(id);
+                    return  productRepository.save(newProduct);
+                });
+    }
+
     public List<ProductDto> getProductsForCurrentUser() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

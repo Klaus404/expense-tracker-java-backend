@@ -40,21 +40,8 @@ public class ProductController {
     //Replace a product with a specific id
     @PutMapping("/products/{id}")
     Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id){
-/**
-        return productRepository.findById(id)
-                .map(product -> {
-                    product.setName(newProduct.getName());
-                    product.setDescription(newProduct.getDescription());
-                    product.setQuantity(newProduct.getQuantity());
-                    product.setValue(newProduct.getValue());
-                    return productRepository.save(product);
-                })
-                .orElseGet(() -> {
-                    newProduct.setId(id);
-                    return  productRepository.save(newProduct);
-                });
-**/
-        return null;
+
+        return productService.putProduct(newProduct, id);
     }
 
     //Delete a product with a specific id
