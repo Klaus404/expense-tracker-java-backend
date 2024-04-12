@@ -60,7 +60,7 @@ public class ProductService {
     }
 
 
-    public List<Object> getProductsForCurrentUserByProductId(Long id) {
+    public List<ProductDto> getProductsForCurrentUserByProductId(Long id) {
         return null;
     }
 }

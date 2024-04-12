@@ -4,8 +4,10 @@ package com.example.klaus404.expensemanager.controller;
 import com.example.klaus404.expensemanager.dao.ProductRepository;
 import com.example.klaus404.expensemanager.dao.UserRepository;
 import com.example.klaus404.expensemanager.dto.ProductDto;
+import com.example.klaus404.expensemanager.exception.NotFoundException;
 import com.example.klaus404.expensemanager.model.Product;
 import com.example.klaus404.expensemanager.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,22 +20,44 @@ public class ProductController {
 
     //Show all products from the DB
     @GetMapping("/products")
-    List<ProductDto> all() {
-        return productService.getProductsForCurrentUser();
+    List<ProductDto> all() throws NotFoundException {
+        List<ProductDto> userProducts = productService.getProductsForCurrentUser();
+
+        if(userProducts != null) {
+            return  userProducts;
+        } else{
+            throw new NotFoundException("404: Products not found!");
+        }
+
+
     }
 
 
     //Add one product into the DB
     @PostMapping("/products")
-    Product newProduct(@RequestBody Product newProduct){
-        productService.saveProduct(newProduct);
-        return newProduct;
+    ResponseEntity<ProductDto> newProduct(@RequestBody Product newProduct){
+        ProductDto productDto = productService.saveProduct(newProduct);
+        if(productDto != null){
+            return ResponseEntity.ok(productDto);
+        }
+        else{
+            return  ResponseEntity.notFound().build();
+        }
+
+
+
     }
 
     //Show the product with one specific id
     @GetMapping("/products/{id}")
-    List<Object> getById(@PathVariable Long id){
-        return productService.getProductsForCurrentUserByProductId(id);
+    List<ProductDto> getById(@PathVariable Long id) throws NotFoundException{
+        List<ProductDto> productsForUser = productService.getProductsForCurrentUserByProductId(id);
+        if(productsForUser != null){
+            return productsForUser;
+        } else {
+            throw new NotFoundException("404: Products not found!");
+        }
+
     }
 
 
