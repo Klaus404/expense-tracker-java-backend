@@ -1,6 +1,7 @@
 package com.example.klaus404.expensemanager.service;
 
 import com.example.klaus404.expensemanager.dao.UserRepository;
+import com.example.klaus404.expensemanager.exception.NotFoundException;
 import com.example.klaus404.expensemanager.model.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,7 +29,8 @@ public class UserService {
         return false;
     }
 
-    public List<User> getUsers() {
-        return null;
+    public List<User> getUsers() throws NotFoundException {
+        return userRepository.getAllUsers()
+                .orElseThrow(() -> new NotFoundException("404: User not found!"));
     }
 }

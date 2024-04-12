@@ -1,5 +1,6 @@
 package com.example.klaus404.expensemanager.controller;
 
+import com.example.klaus404.expensemanager.exception.NotFoundException;
 import com.example.klaus404.expensemanager.model.User;
 import com.example.klaus404.expensemanager.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> getUsers(){
+    public List<User> getUsers() throws NotFoundException {
         return userService.getUsers();
     }
 
