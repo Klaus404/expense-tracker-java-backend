@@ -5,14 +5,15 @@ import com.example.klaus404.expensemanager.model.User;
 
 
 public class ProductDto {
-
+    private Long id;
     private User user;
     private String name;
     private float value;
     private int quantity;
     private String description;
 
-    public ProductDto(User user, String name, float value, int quantity, String description) {
+    public ProductDto(Long id, User user, String name, float value, int quantity, String description) {
+        this.id = id;
         this.user = user;
         this.name = name;
         this.value = value;
@@ -54,6 +55,14 @@ public class ProductDto {
 
     public String getDescription() {
         return description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setDescription(String description) {

@@ -67,7 +67,10 @@ public class ProductService {
 
 
 
-    public List<ProductDto> getProductsForCurrentUserByProductId(Long id) {
-        return null;
+    public ProductDto getProductsForCurrentUserByProductId(Long id) throws NotFoundException {
+        return getProductsForCurrentUser().stream()
+                .filter(product -> product.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("404: No products found!"));
     }
 }

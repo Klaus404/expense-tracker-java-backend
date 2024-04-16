@@ -51,10 +51,10 @@ public class ProductController {
 
     //Show the product with one specific id
     @GetMapping("/products/{id}")
-    List<ProductDto> getById(@PathVariable Long id) throws NotFoundException{
-        List<ProductDto> productsForUser = productService.getProductsForCurrentUserByProductId(id);
-        if(productsForUser != null){
-            return productsForUser;
+    ProductDto getById(@PathVariable Long id) throws NotFoundException{
+        ProductDto productForUser = productService.getProductsForCurrentUserByProductId(id);
+        if(productForUser != null){
+            return productForUser;
         } else {
             throw new NotFoundException("404: Products not found!");
         }
