@@ -21,6 +21,7 @@ public class ProductController {
     //Show all products from the DB
     @GetMapping("/products")
     List<ProductDto> all() throws NotFoundException {
+
         List<ProductDto> userProducts = productService.getProductsForCurrentUser();
 
         if(userProducts != null) {

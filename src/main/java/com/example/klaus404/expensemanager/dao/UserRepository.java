@@ -1,5 +1,6 @@
 package com.example.klaus404.expensemanager.dao;
 
+import com.example.klaus404.expensemanager.model.Product;
 import com.example.klaus404.expensemanager.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,9 +14,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<List<User>> getAllUsers();
 
 
+
     Optional<User> findByUsername(String username);
 
     boolean existsByUsername(String username);
 
     boolean existsByEmail(String email);
+
+    Optional<List<Product>> getProducts();
 }

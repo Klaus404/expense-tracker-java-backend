@@ -1,13 +1,17 @@
 package com.example.klaus404.expensemanager.service;
 
 import com.example.klaus404.expensemanager.dao.UserRepository;
+import com.example.klaus404.expensemanager.dto.ProductDto;
 import com.example.klaus404.expensemanager.exception.NotFoundException;
+import com.example.klaus404.expensemanager.model.Product;
 import com.example.klaus404.expensemanager.model.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -33,4 +37,6 @@ public class UserService {
         return userRepository.getAllUsers()
                 .orElseThrow(() -> new NotFoundException("404: User not found!"));
     }
+
+
 }
