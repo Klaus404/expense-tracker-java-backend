@@ -3,6 +3,8 @@ package com.example.klaus404.expensemanager.dao;
 import com.example.klaus404.expensemanager.model.Product;
 import com.example.klaus404.expensemanager.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,9 +13,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<List<User>> getAllUsers();
-
-
+    List<User> findAll();
 
     Optional<User> findByUsername(String username);
 
@@ -21,5 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByEmail(String email);
 
-    Optional<List<Product>> getProducts();
+    @Query("SELECT p FROM Product p WHERE p.user = :user")
+    Optional<List<Product>> findProductsByUser(@Param("user") User user);
 }

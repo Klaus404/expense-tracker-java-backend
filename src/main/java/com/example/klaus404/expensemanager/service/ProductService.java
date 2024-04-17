@@ -66,7 +66,6 @@ public class ProductService {
     }
 
 
-
     public ProductDto getProductsForCurrentUserByProductId(Long id) throws NotFoundException {
         return getProductsForCurrentUser().stream()
                 .filter(product -> product.getId().equals(id))

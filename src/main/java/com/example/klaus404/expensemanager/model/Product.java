@@ -52,7 +52,7 @@ public class Product{
     }
 
     public ProductDto toDto(){
-       return new ProductDto(this.user, this.name, this.value, this.quantity, this.description);
+       return new ProductDto(this.id, this.user, this.name, this.value, this.quantity, this.description);
     }
 
 }
