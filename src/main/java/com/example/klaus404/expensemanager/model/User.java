@@ -22,7 +22,7 @@ public class User{
     private Integer id;
 
     //Also used as username to log in users
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -35,7 +35,7 @@ public class User{
     private Set<Role> roles = new HashSet<>();
 
     @NonNull
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @OneToMany(mappedBy = "user")

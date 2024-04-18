@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -74,10 +75,14 @@ public class SecurityConfig  {
                             authorizeConfig.requestMatchers("/auth/signout").permitAll();
                             authorizeConfig.requestMatchers("/error").hasAuthority("ROLE_ADMIN");
                             authorizeConfig.requestMatchers("/users").hasAuthority("ROLE_ADMIN");
-                            authorizeConfig.requestMatchers("products/*").hasAuthority("ROLE_USER");
+                            authorizeConfig.requestMatchers("products/*").authenticated();
                             authorizeConfig.requestMatchers("/products").authenticated();
                             authorizeConfig.anyRequest().authenticated();
                         }
+                )
+                .csrf((csrf) -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .ignoringRequestMatchers("/*")
                 )
                 .authenticationProvider(customAuthentificationProvider)
                 .formLogin(withDefaults())
