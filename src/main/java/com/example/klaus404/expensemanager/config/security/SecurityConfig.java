@@ -82,7 +82,7 @@ public class SecurityConfig  {
                 )
                 .csrf((csrf) -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        .ignoringRequestMatchers("/*")
+                        //.ignoringRequestMatchers("/*")
                 )
                 .authenticationProvider(customAuthentificationProvider)
                 .formLogin(withDefaults())

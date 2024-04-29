@@ -1,5 +1,6 @@
 package com.example.klaus404.expensemanager.model;
 
+import com.example.klaus404.expensemanager.dto.UserDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -98,5 +99,7 @@ public class User{
         this.id = id;
     }
 
-
+    public UserDto toDto(){
+        return new UserDto(this.username, this.hashcode);
+    }
 }
