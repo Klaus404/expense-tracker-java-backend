@@ -3,28 +3,39 @@ package com.example.klaus404.expensemanager.config;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @Configuration
 public class FirebaseConfig {
-    @Bean
-    public FirebaseAuth firebaseAuth(){
-        return FirebaseAuth.getInstance();
-    }
 
     @PostConstruct
-    public void initializeFirebaseApp() throws IOException {
+    public void initialize(){
+        FileInputStream serviceAccount;
 
-        FirebaseOptions options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.getApplicationDefault())
 
-                .setServiceAccountId(SERVICE_ACCOUNT_ID)
-                .build();
+        try {
+            serviceAccount = new FileInputStream("/home/klaus/IdeaProjects/ExpenseManager-backend/src/main/resources/firebase_config.json");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        FirebaseOptions options;
+
+        try {
+            options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .build();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         FirebaseApp.initializeApp(options);
+
     }
+
 }
