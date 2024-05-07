@@ -1,41 +1,40 @@
-package com.example.klaus404.expensemanager.config;
+package com.example.klaus404.expensemanager.config.security.firebase;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-@Configuration
+
 public class FirebaseConfig {
 
-    @PostConstruct
-    public void initialize(){
-        FileInputStream serviceAccount;
+    FileInputStream serviceAccount;
 
-
+    {
         try {
-            serviceAccount = new FileInputStream("/home/klaus/IdeaProjects/ExpenseManager-backend/src/main/resources/firebase_config.json");
+            serviceAccount = new FileInputStream("/src/main/resources/firebaseConfig.json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
 
-        FirebaseOptions options;
+    FirebaseOptions options;
 
+    {
         try {
             options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setDatabaseUrl("https://expensemanager-d878c-default-rtdb.europe-west1.firebasedatabase.app")
                     .build();
+
+            FirebaseApp.initializeApp(options);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        FirebaseApp.initializeApp(options);
-
     }
+
 
 }
