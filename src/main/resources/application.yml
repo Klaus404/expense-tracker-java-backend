@@ -53,3 +53,7 @@ spring:
                         scope: openid, profile, email, offline_access
                         client-id: 0oad1f3lv4csZUKQ35d7
                         client-secret: fPfl0fTD3f4ngWp11pBDY0uTcBCL4CPWP9A3Rk-Zo2ugaapH2Wy6kEyzfljNXkwQ
+
+firebase:
+    config:
+        path: src/main/resources/firebaseConfig.json
