@@ -73,6 +73,7 @@ public class SecurityConfig  {
                             authorizeConfig.requestMatchers("/auth/signin").permitAll();
                             authorizeConfig.requestMatchers("/auth/signup").permitAll();
                             authorizeConfig.requestMatchers("/auth/signout").permitAll();
+                            authorizeConfig.requestMatchers("/signup").permitAll();
                             authorizeConfig.requestMatchers("/error").hasAuthority("ROLE_ADMIN");
                             authorizeConfig.requestMatchers("/users").hasAuthority("ROLE_ADMIN");
                             authorizeConfig.requestMatchers("products/*").authenticated();
