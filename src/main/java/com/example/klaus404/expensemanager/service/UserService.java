@@ -4,8 +4,8 @@ import com.example.klaus404.expensemanager.dao.UserRepository;
 import com.example.klaus404.expensemanager.dto.UserDto;
 import com.example.klaus404.expensemanager.exception.NotFoundException;
 import com.example.klaus404.expensemanager.model.User;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class UserService {
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-
+/*
     //Handle the users in the DB
     public UserDto saveUser(Authentication authUser) throws NotFoundException {
         if(!existingUser((UsernamePasswordAuthenticationToken) authUser.getPrincipal())){
@@ -31,7 +31,7 @@ public class UserService {
     private boolean existingUser(UsernamePasswordAuthenticationToken p){
         return userRepository.existsByUsername(p.getName());
     }
-
+*/
     public List<User> getUsers() throws NotFoundException {
         List<User> userList = userRepository.findAll();
         if(userList != null){

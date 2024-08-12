@@ -1,5 +1,5 @@
 package com.example.klaus404.expensemanager.config.security.jwt;
-
+/*
 import com.example.klaus404.expensemanager.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+
 
 
 public class AuthTokenFilter extends OncePerRequestFilter {
@@ -59,3 +60,4 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         return jwt;
     }
 }
+*/

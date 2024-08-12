@@ -1,5 +1,5 @@
 package com.example.klaus404.expensemanager.service;
-
+/*
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -32,3 +32,4 @@ public class AuthService {
         firebaseAuth.createUser(request);
     }
 }
+*/

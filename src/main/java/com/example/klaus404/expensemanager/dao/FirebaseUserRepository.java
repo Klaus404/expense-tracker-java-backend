@@ -1,5 +1,5 @@
 package com.example.klaus404.expensemanager.dao;
-
+/*
 import com.example.klaus404.expensemanager.exception.NotFoundException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -33,3 +33,4 @@ public class FirebaseUserRepository {
         return Optional.empty();
     }
 }
+*/

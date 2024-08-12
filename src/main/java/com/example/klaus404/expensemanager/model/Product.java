@@ -21,8 +21,8 @@ public class Product{
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "product_name")
+    private String product_name;
 
     @Column(name = "value", nullable = false)
     private float value;
@@ -47,12 +47,8 @@ public class Product{
     private User user;
 
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public ProductDto toDto(){
-       return new ProductDto(this.id, this.user, this.name, this.value, this.quantity, this.description);
+       return new ProductDto(this.id, this.user, this.product_name, this.value, this.quantity, this.description);
     }
 
 }

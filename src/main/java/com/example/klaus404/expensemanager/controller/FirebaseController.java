@@ -1,5 +1,5 @@
 package com.example.klaus404.expensemanager.controller;
-
+/*
 import com.example.klaus404.expensemanager.service.AuthService;
 import com.google.firebase.auth.FirebaseAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,3 +21,5 @@ public class FirebaseController {
         }
     }
 }
+
+ */

@@ -1,5 +1,5 @@
 package com.example.klaus404.expensemanager.config;
-
+/*
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -35,3 +35,4 @@ public class FirebaseConfig {
         return FirebaseAuth.getInstance(firebaseApp);
     }
 }
+*/

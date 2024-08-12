@@ -10,7 +10,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Principal user){
-        return "Welcome " + user.getName() + "!";
+        return "Merge";
     }
 
 }

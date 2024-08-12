@@ -1,5 +1,5 @@
 package com.example.klaus404.expensemanager.config.security.jwt;
-
+/*
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,3 +27,4 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
 
 }
+*/

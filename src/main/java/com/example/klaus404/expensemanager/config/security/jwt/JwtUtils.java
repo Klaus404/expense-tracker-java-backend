@@ -1,5 +1,5 @@
 package com.example.klaus404.expensemanager.config.security.jwt;
-
+/*
 import com.example.klaus404.expensemanager.model.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -16,7 +16,7 @@ import org.springframework.web.util.WebUtils;
 import java.security.Key;
 import java.util.Date;
 
-@Component
+//@Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
@@ -84,3 +84,4 @@ public class JwtUtils {
                 .compact();
     }
 }
+*/

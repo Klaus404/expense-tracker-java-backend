@@ -1,5 +1,5 @@
 package com.example.klaus404.expensemanager.controller;
-
+/*
 import com.example.klaus404.expensemanager.config.security.jwt.JwtUtils;
 import com.example.klaus404.expensemanager.dao.RoleRepository;
 import com.example.klaus404.expensemanager.dao.UserRepository;
@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -128,3 +129,5 @@ public class AuthController {
     }
 
 }
+
+ */

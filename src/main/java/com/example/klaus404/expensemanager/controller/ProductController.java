@@ -20,9 +20,9 @@ public class ProductController {
 
     //Show all products from the DB
     @GetMapping("/products")
-    List<ProductDto> all() throws NotFoundException {
+    List<Product> all() throws NotFoundException {
 
-        List<ProductDto> userProducts = productService.getProductsForCurrentUser();
+        List<Product> userProducts = productService.getAllProducts();
 
         if(userProducts != null) {
             return  userProducts;
@@ -52,7 +52,7 @@ public class ProductController {
     //Show the product with one specific id
     @GetMapping("/products/{id}")
     ProductDto getById(@PathVariable Long id) throws NotFoundException{
-        ProductDto productForUser = productService.getProductsForCurrentUserByProductId(id);
+        ProductDto productForUser = (ProductDto) productService.getAllProducts();
         if(productForUser != null){
             return productForUser;
         } else {

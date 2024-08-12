@@ -6,8 +6,7 @@ import com.example.klaus404.expensemanager.dto.ProductDto;
 import com.example.klaus404.expensemanager.exception.NotFoundException;
 import com.example.klaus404.expensemanager.model.Product;
 import com.example.klaus404.expensemanager.model.User;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,7 +44,8 @@ public class ProductService {
                     return  productRepository.save(newProduct);
                 });
     }
-
+    public List<Product> getAllProducts(){return productRepository.findAll();}
+/*
     public List<ProductDto> getProductsForCurrentUser() throws NotFoundException {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -66,10 +66,13 @@ public class ProductService {
     }
 
 
+
     public ProductDto getProductsForCurrentUserByProductId(Long id) throws NotFoundException {
         return getProductsForCurrentUser().stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new NotFoundException("404: No products found!"));
     }
+     */
+
 }
